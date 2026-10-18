@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceAndRelief - Global Human Rights & Welfare Portal</title>
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #198754;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .top-bar {
+            background-color: #111;
+            color: #fff;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lang-select {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        header {
+            background-color: var(--dark-color);
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), #222;
+            color: #fff;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .hero h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: var(--dark-color);
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .title-wrapper {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .badge-verified {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Twitter Style Feed Section */
+        .feed-card {
+            background: #fff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .feed-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-info h4 {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .user-info span {
+            font-size: 12px;
+            color: #657786;
+        }
+
+        .feed-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #657786;
+        }
+
+        .feed-action-btn {
+            background: none;
+            border: none;
+            color: #657786;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: #fff;
+            text-align: center;
+            padding: 20px 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span id="top-title">🌍 VoiceAndRelief - Global Human Rights & Welfare Portal</span>
+        <div>
+            <select id="langSelector" class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="ur">اردو (Urdu)</option>
+                <option value="roman_urdu">Roman Urdu</option>
+            </select>
+        </div>
+    </div>
+
+    <header>
+        <a href="#" class="logo">Voice<span>AndRelief</span></a>
+        <nav>
+            <a href="#campaigns" id="nav-awaaz">Human Rights Awaaz</a>
+            <a href="#madad" id="nav-request">Verified Request</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 id="hero-title">VoiceAndRelief Platform</h1>
+        <p id="hero-sub">Voice for the oppressed, support for the needy</p>
+    </section>
+
+    <div class="container">
+
+        <!-- Section 1: Human Rights Twitter-style Campaign Section -->
+        <div class="title-wrapper" id="campaigns">
+            <h2 class="section-title" id="awaaz-header">📢 Human Rights Campaign (Jan Awaaz)</h2>
+        </div>
+
+        <!-- Post Creator Box -->
+        <div class="card">
+            <h3 style="margin-top: 0; font-size: 16px;" id="post-box-title">Raise Your Voice for Human Rights</h3>
+            <form id="postForm">
+                <div class="form-group">
+                    <input type="text" id="postAuthor" placeholder="Your Name or Organization" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="postText" rows="3" placeholder="Share human rights issue, campaign, or story..." required></textarea>
+                </div>
+                <button type="submit" class="btn" style="background-color: var(--primary-color);" id="btn-post">Post Campaign / आवाज़ उठाएं</button>
+            </form>
+        </div>
+
+        <!-- Dynamic Feed List -->
+        <div id="feedList">
+            <!-- Sample Twitter-Style Post 1 -->
+            <div class="feed-card">
+                <div class="feed-header">
+                    <div class="user-avatar">HR</div>
+                    <div class="user-info">
+                        <h4>Human Rights Activist</h4>
+                        <span>@rights_campaign • 2h ago</span>
+                    </div>
+                </div>
+                <p>Standing together for equal rights, access to clean water, and social justice for underprivileged communities. #HumanRights #VoiceAndRelief</p>
+                <div class="feed-actions">
+                    <button class="feed-action-btn" onclick="likePost(this)">👍 Support (12)</button>
+                    <button class="feed-action-btn">💬 Comment</button>
+                    <button class="feed-action-btn">📢 Share</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Verified Need Application -->
+        <div class="title-wrapper" id="madad">
+            <h2 class="section-title" id="form-header">Verified Relief Request Application</h2>
+        </div>
+        
+        <div class="card" style="max-width: 500px; margin: 0 auto 30px auto;">
+            <p style="text-align: center; color: #666; font-size: 13px;" id="form-notice">
+                Strict admin verification required via CNIC/ID Proof before publication.
+            </p>
+            <form id="reliefForm">
+                <div class="form-group">
+                    <label for="name" id="label-fullname">Full Name:</label>
+                    <input type="text" id="name" placeholder="Enter full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cnic" id="label-idnum">CNIC / ID Card Number:</label>
+                    <input type="text" id="cnic" placeholder="e.g. 36103-XXXXXXX-X" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" id="label-phone">Mobile / WhatsApp Number:</label>
+                    <input type="text" id="phone" placeholder="+92 3XX XXXXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="type" id="label-helptype">Type of Help Needed:</label>
+                    <select id="type" required>
+                        <option value="">Select Option</option>
+                        <option value="ration">Food / Rashan Relief</option>
+                        <option value="medical">Medical Aid</option>
+                        <option value="clothes">Clothing</option>
+                        <option value="education">Education Support</option>
+                        <option value="financial">Financial Help</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="details" id="label-details">Request Details:</label>
+                    <textarea id="details" rows="3" placeholder="Describe the hardship..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="proof" id="label-proof">Upload Proof / ID Document:</label>
+                    <input type="file" id="proof" required>
+                </div>
+
+                <button type="submit" class="btn" id="btn-submit">Submit Application</button>
+            </form>
+        </div>
+
+        <!-- Section 3: Verified Cases -->
+        <div class="title-wrapper">
+            <h2 class="section-title" id="cases-header">Verified Relief Cases</h2>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <span class="badge-verified" id="badge1">✓ Verified Case</span>
+                <h3 style="margin-top: 10px; font-size: 18px;" id="case1-title">Monthly Ration Relief</h3>
+                <p><strong id="label-loc1">Location:</strong> Burewala, Punjab</p>
+                <p><strong id="label-req1">Requirement:</strong> Monthly grocery support for needy family.</p>
+                <button class="btn" style="background-color: var(--primary-color);" id="btn-donate1">Support / Invest</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footer-text">&copy; 2026 VoiceAndRelief Global Platform. All Rights Reserved.</p>
+        <p style="font-size: 12px; opacity: 0.8;" id="footer-motto">Khidmat-e-Khalq, Insani Huqooq Aur Roshan Mustaqbil</p>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                topTitle: "🌍 VoiceAndRelief - Global Human Rights & Welfare Portal",
+                navAwaaz: "Human Rights Awaaz",
+                navRequest: "Verified Request",
+                heroTitle: "VoiceAndRelief Platform",
+                heroSub: "Voice for the oppressed, support for the needy",
+                awaazHeader: "📢 Human Rights Campaign (Jan Awaaz)",
+                postBoxTitle: "Raise Your Voice for Human Rights",
+                btnPost: "Post Campaign",
+                formHeader: "Verified Relief Request Application",
+                formNotice: "Strict admin verification required via CNIC/ID Proof before publication.",
+                fullName: "Full Name:",
+                idNum: "CNIC / ID Card Number:",
+                phone: "Mobile / WhatsApp Number:",
+                helpType: "Type of Help Needed:",
+                details: "Request Details:",
+                proof: "Upload Proof / ID Document:",
+                submit: "Submit Application",
+                casesHeader: "Verified Relief Cases",
+                badge: "✓ Verified Case",
+                supportBtn: "Support / Invest",
+                location: "Location:",
+                requirement: "Requirement:",
+                footerMotto: "Khidmat-e-Khalq, Insani Huqooq Aur Roshan Mustaqbil"
+            },
+            ur: {
+                topTitle: "🌍 وائس اینڈ ریلیف - انسانی حقوق اور فلاحی پورٹل",
+                navAwaaz: "انسانی حقوق آواز",
+                navRequest: "تصدیق شدہ امدادی درخواست",
+                heroTitle: "وائس اینڈ ریلیف پلیٹ فارم",
+                heroSub: "مظلوم کی آواز اور ضرورت مند کا سہارا",
+                awaazHeader: "📢 انسانی حقوق کی آواز (جن آواز)",
+                postBoxTitle: "انسانی حقوق کے لیے اپنی آواز بلند کریں",
+                btnPost: "پوسٹ شائع کریں",
+                formHeader: "تصدیق شدہ امداد کے لیے درخواست فارم",
+                formNotice: "شناختی کارڈ اور ثبوت کی مکمل تصدیق کے بعد درخواست شائع کی جائے گی۔",
+                fullName: "پورا نام:",
+                idNum: "شناختی کارڈ نمبر (CNIC):",
+                phone: "موبائل / واٹس ایپ نمبر:",
+                helpType: "امداد کی قسم:",
+                details: "مسئلے کی تفصیلات:",
+                proof: "شناختی ثبوت اپلوڈ کریں:",
+                submit: "درخواست جمع کروائیں",
+                casesHeader: "تصدیق شدہ امدادی کیسز",
+                badge: "✓ تصدیق شدہ کیس",
+                supportBtn: "امداد کریں / انویسٹ کریں",
+                location: "مقام:",
+                requirement: "ضرورت:",
+                footerMotto: "خدمتِ خلق، انسانی حقوق اور روشن مستقبل"
+            },
+            roman_urdu: {
+                topTitle: "🌍 VoiceAndRelief - Insani Huqooq & Welfare Portal",
+                navAwaaz: "Human Rights Awaaz",
+                navRequest: "Verified Relief Request",
+                heroTitle: "VoiceAndRelief Platform",
+                heroSub: "Mazloom ki awaaz aur zarooratmand ka sahara",
+                awaazHeader: "📢 Human Rights Campaign (Jan Awaaz)",
+                postBoxTitle: "Insani Huqooq Ke Liye Awaaz Uthaien",
+                btnPost: "Post Campaign",
+                formHeader: "Verified Relief Request Application",
+                formNotice: "CNIC/ID Proof verification ke baad hi request approve hogi.",
+                fullName: "Poora Naam:",
+                idNum: "CNIC / ID Card Number:",
+                phone: "Mobile / WhatsApp Number:",
+                helpType: "Madad Ki Kism:",
+                details: "Masley Ki Tafseelat:",
+                proof: "Saboot / ID Proof Upload Karein:",
+                submit: "Application Jama Karein",
+                casesHeader: "Verified Relief Cases",
+                badge: "✓ Verified Case",
+                supportBtn: "Madad Karein / Invest",
+                location: "Ilaqa:",
+                requirement: "Zaroorat:",
+                footerMotto: "Khidmat-e-Khalq, Insani Huqooq Aur Roshan Mustaqbil"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const data = translations[lang] || translations['en'];
+            if(lang === 'ur') {
+                document.body.style.direction = 'rtl';
+            } else {
+                document.body.style.direction = 'ltr';
+            }
+            document.getElementById('top-title').innerText = data.topTitle;
+            document.getElementById('nav-awaaz').innerText = data.navAwaaz;
+            document.getElementById('nav-request').innerText = data.navRequest;
+            document.getElementById('hero-title').innerText = data.heroTitle;
+            document.getElementById('hero-sub').innerText = data.heroSub;
+            document.getElementById('awaaz-header').innerText = data.awaazHeader;
+            document.getElementById('post-box-title').innerText = data.postBoxTitle;
+            document.getElementById('btn-post').innerText = data.btnPost;
+            document.getElementById('form-header').innerText = data.formHeader;
+            document.getElementById('form-notice').innerText = data.formNotice;
+            document.getElementById('label-fullname').innerText = data.fullName;
+            document.getElementById('label-idnum').innerText = data.idNum;
+            document.getElementById('label-phone').innerText = data.phone;
+            document.getElementById('label-helptype').innerText = data.helpType;
+            document.getElementById('label-details').innerText = data.details;
+            document.getElementById('label-proof').innerText = data.proof;
+            document.getElementById('btn-submit').innerText = data.submit;
+            document.getElementById('cases-header').innerText = data.casesHeader;
+            document.getElementById('badge1').innerText = data.badge;
+            document.getElementById('btn-donate1').innerText = data.supportBtn;
+            document.getElementById('label-loc1').innerText = data.location;
+            document.getElementById('label-req1').innerText = data.requirement;
+            document.getElementById('footer-motto').innerText = data.footerMotto;
+        }
+
+        // Post Campaign Interactive Function
+        document.getElementById('postForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const author = document.getElementById('postAuthor').value;
+            const text = document.getElementById('postText').value;
+
+            const newPost = document.createElement('div');
+            newPost.className = 'feed-card';
+            newPost.innerHTML = `
+                <div class="feed-header">
+                    <div class="user-avatar">${author.charAt(0).toUpperCase()}</div>
+                    <div class="user-info">
+                        <h4>${author}</h4>
+                        <span>Just now</span>
+                    </div>
+                </div>
+                <p>${text}</p>
+                <div class="feed-actions">
+                    <button class="feed-action-btn" onclick="likePost(this)">👍 Support (0)</button>
+                    <button class="feed-action-btn">💬 Comment</button>
+                    <button class="feed-action-btn">📢 Share</button>
+                </div>
+            `;
+
+            document.getElementById('feedList').prepend(newPost);
+            this.reset();
+            alert('Aapki Awaaz / Campaign Post Ho Gayi Hai!');
+        });
+
+        function likePost(btn) {
+            btn.innerHTML = '👍 Supported (13)';
+            btn.style.color = '#0d6efd';
+        }
+
+        document.getElementById('reliefForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Application Submitted Successfully!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
