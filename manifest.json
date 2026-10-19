@@ -1,0 +1,16 @@
+{ 
+  "name": "VoiceAndRelief",
+  "short_name": "VoiceAndRelief",
+  "description": "Global Human Rights and Welfare Portal",
+  "start_url": "/voiceandrelief/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
